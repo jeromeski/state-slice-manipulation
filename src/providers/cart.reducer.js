@@ -33,8 +33,8 @@ const cartReducer = (state, action) => {
               ? {
                   ...item,
                   qty:
-                    item.qty === 0
-                      ? 0
+                    item.qty === 1
+                      ? 1
                       : product.qty
                       ? item.qty - product.qty
                       : item.qty - 1
