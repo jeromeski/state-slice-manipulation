@@ -2,6 +2,8 @@ import styled from "styled-components/macro";
 
 const Card = styled.div`
   background-color: whitesmoke;
+  padding: 0 15px;
+  margin: 15px 15px;
   .card-container {
     display: flex;
     padding: 15px;
