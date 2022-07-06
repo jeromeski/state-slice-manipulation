@@ -8,7 +8,9 @@ const ProductFeed = () => {
   return (
     <Feed>
       {state &&
-        state?.items?.map((item) => <ProductCard key={item.id} {...item} />)}
+        state?.items
+          ?.slice(0, 8)
+          .map((item) => <ProductCard key={item.id} {...item} />)}
     </Feed>
   );
 };

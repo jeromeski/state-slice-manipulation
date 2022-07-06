@@ -8,8 +8,15 @@ const Card = styled.div`
     display: flex;
     padding: 15px;
     align-items: center;
-    img {
+    .image-thumb {
       margin-right: 15px;
+      height: auto;
+      width: 100px;
+    }
+
+    img {
+      height: auto;
+      max-width: 100%;
     }
 
     .title {

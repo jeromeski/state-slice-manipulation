@@ -3,14 +3,16 @@ import { CgMathPlus, CgMathMinus, CgTrash } from "react-icons/cg";
 import { useCart } from "../../providers/cart.context";
 import Card from "./card-style";
 
-const ProductCard = ({ id, name, qty }) => {
+const ProductCard = ({ id, title, qty = 1, image }) => {
   const { incQty, decQty } = useCart();
 
   return (
     <Card>
       <div className="card-container">
-        <img src="https://via.placeholder.com/50" alt="product" />
-        <h5 className="title">{name}</h5>
+        <div className="image-thumb">
+          <img src={image} alt="product" />
+        </div>
+        <h5 className="title">{title}</h5>
         <div className="action">
           <button className="increase" onClick={() => incQty({ id })}>
             <CgMathPlus />

@@ -1,4 +1,4 @@
-export const items = [
+export const data = [
   {
     id: 57,
     title: "Magnetic Designs Women Printed Fit And Flare Dress",
