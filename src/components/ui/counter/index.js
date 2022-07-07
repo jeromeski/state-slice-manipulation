@@ -1,17 +1,23 @@
 import { CgMathPlus, CgMathMinus } from "react-icons/cg";
 import { CounterWrap } from "./counter-style";
+import CartButton from "components/ui/buttons/cart-button";
 
-const Counter = ({ id, incQty, decQty, delItem, qty }) => {
+const Counter = ({ incQty, decQty, product }) => {
+  const { qty } = product;
   return (
     <CounterWrap>
       <div className="counter-elements">
-        <button className="increase" onClick={() => incQty({ id })}>
-          <CgMathPlus />
-        </button>
+        <CartButton
+          icon={<CgMathPlus />}
+          onClick={() => incQty(product)}
+          mr={2}
+        />
         <input type="text" readOnly value={qty} />
-        <button className="decrease" onClick={() => decQty({ id })}>
-          <CgMathMinus />
-        </button>
+        <CartButton
+          icon={<CgMathMinus />}
+          onClick={() => decQty(product)}
+          ml={2}
+        />
       </div>
     </CounterWrap>
   );

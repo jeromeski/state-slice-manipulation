@@ -147,14 +147,16 @@ const INITIAL_STATE = {
 const cartReducer = (state, action) => {
   const cartItems = state.items;
   const product = action.payload;
+  console.log("payload", action.payload);
   const targetItem = cartItems.filter((item) => item.id === product.id)[0];
+  console.log(targetItem);
   switch (action.type) {
     case "INC_QTY":
       return {
         ...state,
         items: [
           ...cartItems.map((item) =>
-            item.id === targetItem.id
+            item.id === targetItem?.id
               ? {
                   ...item,
                   qty: product.qty ? item.qty + product.qty : item.qty + 1
@@ -168,7 +170,7 @@ const cartReducer = (state, action) => {
         ...state,
         items: [
           ...cartItems.map((item) =>
-            item.id === targetItem.id
+            item.id === targetItem?.id
               ? {
                   ...item,
                   qty:
@@ -185,7 +187,7 @@ const cartReducer = (state, action) => {
     case "DELETE_ITEM":
       return {
         ...state,
-        items: [...cartItems.filter((item) => item.id !== targetItem.id)]
+        items: [...cartItems.filter((item) => item.id !== targetItem?.id)]
       };
 
     case "ADD_ITEM":

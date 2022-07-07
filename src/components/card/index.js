@@ -1,33 +1,26 @@
 import React from "react";
-import { CgTrash } from "react-icons/cg";
 import { useCart } from "../../providers/cart.context";
 import Counter from "../ui/counter";
 import CartThumb from "../ui/image/cart-thumb";
 import Card from "./card-style";
+import CartButton from "components/ui/buttons/cart-button";
+import { CgTrash } from "react-icons/cg";
 
 const ProductCard = ({ product }) => {
-  const { id, title, qty = 1, image } = product;
+  const { id, title, image } = product;
   const { incQty, decQty, delItem } = useCart();
-
   return (
     <Card>
       <div className="card-container">
-        <button
-          type="button"
-          className="delete"
-          onClick={() => delItem({ id })}
-        >
-          <CgTrash />
-        </button>
+        <CartButton
+          icon={<CgTrash />}
+          id={id}
+          onClick={() => delItem(id)}
+          mr={2}
+        />
         <CartThumb url={image} alt={title} />
         <h5 className="title">{title}</h5>
-        <Counter
-          id={id}
-          qty={qty}
-          incQty={incQty}
-          decQty={decQty}
-          delItem={delItem}
-        />
+        <Counter incQty={incQty} decQty={decQty} product={product} />
       </div>
     </Card>
   );

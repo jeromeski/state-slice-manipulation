@@ -6,37 +6,44 @@ const CartContext = createContext();
 const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
 
-  const incQty = (id) => {
+  const incQty = (product) => {
     dispatch({
       type: "INC_QTY",
-      payload: id
+      payload: product
     });
   };
 
-  const decQty = (id) => {
+  const decQty = (product) => {
     dispatch({
       type: "DEC_QTY",
-      payload: id
+      payload: product
     });
   };
 
-  const delItem = (id) => {
-    dispatch({
-      type: "DELETE_ITEM",
-      payload: id
-    });
-  };
+  // const delItem = (product) => {
+  //   dispatch({
+  //     type: "DELETE_ITEM",
+  //     payload: product
+  //   });
+  // };
 
-  const addItem = (product, qty, total) => {
-    dispatch({
-      type: "ADD_ITEM",
-      payload: { ...product, qty, total }
-    });
-  };
+  // const addItem = (product, qty, total) => {
+  //   dispatch({
+  //     type: "ADD_ITEM",
+  //     payload: { ...product, qty, total }
+  //   });
+  // };
 
-  const values = useMemo(() => ({ state, incQty, decQty, delItem, addItem }), [
-    state
-  ]);
+  const values = useMemo(
+    () => ({
+      state,
+      incQty,
+      decQty
+      // delItem,
+      // addItem
+    }),
+    [state]
+  );
 
   return <CartContext.Provider value={values}>{children}</CartContext.Provider>;
 };

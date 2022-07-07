@@ -12,18 +12,5 @@ export const CounterWrap = styled.div`
       border: none;
       background-color: white;
     }
-    button {
-      display: flex;
-      align-content: center;
-      padding: 5px;
-      cursor: pointer;
-    }
-    .increase {
-      margin-left: 25px;
-      margin-right: 5px;
-    }
-    .decrease {
-      margin-left: 5px;
-    }
   }
 `;
