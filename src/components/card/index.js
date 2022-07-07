@@ -1,24 +1,9 @@
 import React from "react";
-import { CgMathPlus, CgMathMinus, CgTrash } from "react-icons/cg";
+import { CgTrash } from "react-icons/cg";
 import { useCart } from "../../providers/cart.context";
+import Counter from "../ui/counter";
+import CartThumb from "../ui/image/cart-thumb";
 import Card from "./card-style";
-
-const Counter = ({ id, incQty, decQty, delItem, qty }) => {
-  return (
-    <div className="action">
-      <button className="increase" onClick={() => incQty({ id })}>
-        <CgMathPlus />
-      </button>
-      <input type="text" readOnly value={qty} />
-      <button className="decrease" onClick={() => decQty({ id })}>
-        <CgMathMinus />
-      </button>
-      <button className="delete" onClick={() => delItem({ id })}>
-        <CgTrash />
-      </button>
-    </div>
-  );
-};
 
 const ProductCard = ({ product }) => {
   const { id, title, qty = 1, image } = product;
@@ -27,9 +12,14 @@ const ProductCard = ({ product }) => {
   return (
     <Card>
       <div className="card-container">
-        <div className="image-thumb">
-          <img src={image} alt="product" />
-        </div>
+        <button
+          type="button"
+          className="delete"
+          onClick={() => delItem({ id })}
+        >
+          <CgTrash />
+        </button>
+        <CartThumb url={image} alt={title} />
         <h5 className="title">{title}</h5>
         <Counter
           id={id}

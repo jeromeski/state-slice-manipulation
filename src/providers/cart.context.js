@@ -27,10 +27,10 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  const addItem = (product) => {
+  const addItem = (product, qty, total) => {
     dispatch({
       type: "ADD_ITEM",
-      payload: { ...product }
+      payload: { ...product, qty, total }
     });
   };
 
