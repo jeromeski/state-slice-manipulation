@@ -6,10 +6,13 @@ const CartContext = createContext();
 const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, INITIAL_STATE);
 
-  const incQty = (product) => {
+  const incQty = (item, qty) => {
     dispatch({
       type: "INC_QTY",
-      payload: product
+      payload: {
+        item,
+        qty
+      }
     });
   };
 

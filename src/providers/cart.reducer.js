@@ -1,3 +1,11 @@
+import {
+  getGrandTotal,
+  getItemsTotalCount,
+  getNewItemsWithTotal,
+  addItemQuantity,
+  generateFinalState
+} from "./utils";
+
 const INITIAL_STATE = {
   grandTotal: 0,
   items: [
@@ -142,9 +150,35 @@ const INITIAL_STATE = {
         }
       ]
     }
-  ]
+  ],
+  uniqueItemsCount: 3,
+  itemsTotalCount: 3,
+  isEmpty: false,
+  meta: false
 };
 
+const cartReducer = (state, action) => {
+  const cartItems = state.items;
+  const { item, qty } = action.payload;
+  const targetItemIdx = cartItems.findIndex((c) => c.id === item.id);
+  switch (action.type) {
+    case "INC_QTY":
+      const items = addItemQuantity(cartItems, targetItemIdx, qty);
+      return generateFinalState(state, items);
+    case "DEC_QTY":
+
+    case "DELETE_ITEM":
+
+    case "ADD_ITEM":
+
+    default:
+      return state;
+  }
+};
+
+export { INITIAL_STATE, cartReducer };
+
+/*
 const cartReducer = (state, action) => {
   const cartItems = state.items;
   const product = action.payload;
@@ -198,17 +232,4 @@ const cartReducer = (state, action) => {
   }
 };
 
-const getGrandTotal = (qty, state) => {
-  const totalsArr = state.items.map((i) => i.price * qty);
-  const grandTotal = totalsArr.reduce((acc, current) => acc + current);
-  return grandTotal;
-};
-
-const masterState = (qty, state) => {
-  return {
-    grandTotal: getGrandTotal(qty, state),
-    items: state.items
-  };
-};
-
-export { INITIAL_STATE, cartReducer };
+*/

@@ -8,15 +8,7 @@ import { useEffect, useState } from "react";
 
 const CartTable = () => {
   const { state, incQty, decQty, delItem } = useCart();
-  const [grandTotal, setGrandTotal] = useState();
 
-  useEffect(() => {
-    const getGrandTotal = () => {
-      const totals = state.items.map((item) => item.price);
-      setGrandTotal(totals.reduce((acc, cur) => acc + cur));
-    };
-    getGrandTotal();
-  }, [state]);
   return (
     <CartTableWrap>
       <table>
@@ -67,7 +59,7 @@ const CartTable = () => {
               <h4>Grand Total</h4>
             </td>
             <td>
-              <h4>${grandTotal}.00</h4>
+              <h4>$0.00</h4>
             </td>
           </tr>
         </tfoot>
