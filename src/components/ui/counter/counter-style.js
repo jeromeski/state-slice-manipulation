@@ -7,7 +7,7 @@ export const CounterWrap = styled.div`
     align-items: center;
     width: 100%;
     input {
-      width: 30px;
+      width: 20px;
       padding: 5px;
       border: none;
       background-color: white;

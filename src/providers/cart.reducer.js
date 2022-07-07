@@ -1,4 +1,5 @@
 const INITIAL_STATE = {
+  grandTotal: 0,
   items: [
     {
       id: 57,
@@ -147,9 +148,7 @@ const INITIAL_STATE = {
 const cartReducer = (state, action) => {
   const cartItems = state.items;
   const product = action.payload;
-  console.log("payload", action.payload);
   const targetItem = cartItems.filter((item) => item.id === product.id)[0];
-  console.log(targetItem);
   switch (action.type) {
     case "INC_QTY":
       return {
@@ -197,6 +196,19 @@ const cartReducer = (state, action) => {
     default:
       return state;
   }
+};
+
+const getGrandTotal = (qty, state) => {
+  const totalsArr = state.items.map((i) => i.price * qty);
+  const grandTotal = totalsArr.reduce((acc, current) => acc + current);
+  return grandTotal;
+};
+
+const masterState = (qty, state) => {
+  return {
+    grandTotal: getGrandTotal(qty, state),
+    items: state.items
+  };
 };
 
 export { INITIAL_STATE, cartReducer };
