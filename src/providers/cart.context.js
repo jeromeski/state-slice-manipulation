@@ -20,7 +20,23 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  const values = useMemo(() => ({ state, incQty, decQty }), [state]);
+  const delItem = (id) => {
+    dispatch({
+      type: "DELETE_ITEM",
+      payload: id
+    });
+  };
+
+  const addItem = (product) => {
+    dispatch({
+      type: "ADD_ITEM",
+      payload: { ...product }
+    });
+  };
+
+  const values = useMemo(() => ({ state, incQty, decQty, delItem, addItem }), [
+    state
+  ]);
 
   return <CartContext.Provider value={values}>{children}</CartContext.Provider>;
 };

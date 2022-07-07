@@ -182,6 +182,21 @@ const cartReducer = (state, action) => {
           )
         ]
       };
+    case "DELETE_ITEM":
+      return {
+        ...state,
+        items: [...cartItems.filter((item) => item.id !== targetItem.id)]
+      };
+
+    case "ADD_ITEM":
+      const isInCart = Object.values(cartItems[0]).includes(product.id);
+      return isInCart
+        ? { ...state }
+        : {
+            ...state,
+            items: [...cartItems.push(product)]
+          };
+
     default:
       return state;
   }

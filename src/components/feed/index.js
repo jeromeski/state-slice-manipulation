@@ -10,7 +10,7 @@ const ProductFeed = () => {
       {state &&
         state?.items
           ?.slice(0, 8)
-          .map((item) => <ProductCard key={item.id} {...item} />)}
+          .map((item) => <ProductCard key={item.id} product={item} />)}
     </Feed>
   );
 };
