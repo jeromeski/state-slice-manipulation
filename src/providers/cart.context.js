@@ -20,12 +20,12 @@ const CartProvider = ({ children }) => {
     });
   };
 
-  // const delItem = (product) => {
-  //   dispatch({
-  //     type: "DELETE_ITEM",
-  //     payload: product
-  //   });
-  // };
+  const delItem = (product) => {
+    dispatch({
+      type: "DELETE_ITEM",
+      payload: product
+    });
+  };
 
   // const addItem = (product, qty, total) => {
   //   dispatch({
@@ -38,8 +38,8 @@ const CartProvider = ({ children }) => {
     () => ({
       state,
       incQty,
-      decQty
-      // delItem,
+      decQty,
+      delItem
       // addItem
     }),
     [state]

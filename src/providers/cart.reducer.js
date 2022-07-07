@@ -156,10 +156,10 @@ const cartReducer = (state, action) => {
         ...state,
         items: [
           ...cartItems.map((item) =>
-            item.id === targetItem?.id
+            item.id === targetItem.id
               ? {
                   ...item,
-                  qty: product.qty ? item.qty + product.qty : item.qty + 1
+                  qty: item.qty + 1
                 }
               : item
           )
@@ -170,15 +170,10 @@ const cartReducer = (state, action) => {
         ...state,
         items: [
           ...cartItems.map((item) =>
-            item.id === targetItem?.id
+            item.id === targetItem.id
               ? {
                   ...item,
-                  qty:
-                    item.qty === 1
-                      ? 1
-                      : product.qty
-                      ? item.qty - product.qty
-                      : item.qty - 1
+                  qty: item.qty === 1 ? 1 : item.qty - 1
                 }
               : item
           )
@@ -187,7 +182,7 @@ const cartReducer = (state, action) => {
     case "DELETE_ITEM":
       return {
         ...state,
-        items: [...cartItems.filter((item) => item.id !== targetItem?.id)]
+        items: [...cartItems.filter((item) => item.id !== targetItem.id)]
       };
 
     case "ADD_ITEM":

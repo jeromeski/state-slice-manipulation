@@ -15,7 +15,7 @@ const ProductCard = ({ product }) => {
         <CartButton
           icon={<CgTrash />}
           id={id}
-          onClick={() => delItem(id)}
+          onClick={() => delItem(product)}
           mr={2}
         />
         <CartThumb url={image} alt={title} />
