@@ -43,7 +43,7 @@ const CartProvider = ({ children }) => {
       delItem
       // addItem
     }),
-    [state]
+    [incQty, state]
   );
 
   return <CartContext.Provider value={values}>{children}</CartContext.Provider>;

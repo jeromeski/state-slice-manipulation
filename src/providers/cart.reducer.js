@@ -15,6 +15,7 @@ const INITIAL_STATE = {
       unit: "1 pc(s)",
       price: 35,
       qty: 1,
+      itemTotal: 35,
       salePrice: 0,
       description:
         "Mauve printed knitted fit and flare dress, has a round neck, three-quarter sleeves, concealed zip closure,, flared hem",
@@ -62,6 +63,7 @@ const INITIAL_STATE = {
       unit: "1 pc(s)",
       price: 85,
       qty: 1,
+      itemTotal: 85,
       salePrice: 68,
       description:
         "Off-White self-striped knitted midi A-line dress, has a scoop neck, sleeveless, straight hem",
@@ -109,6 +111,7 @@ const INITIAL_STATE = {
       unit: "1 pc(s)",
       price: 185,
       qty: 1,
+      itemTotal: 185,
       salePrice: 0,
       description:
         "Grey solid woven bodycon dress, has a round neck, sleeveless, straight hem",
@@ -164,8 +167,8 @@ const cartReducer = (state, action) => {
         ...state,
         items: getNewItemsWithTotals(items),
         itemsTotalCount: getItemsAggregateCount(items),
-        uniqueItemsCount: items.length,
-        grandTotal: items.reduce(
+        uniqueItemsCount: items?.length,
+        grandTotal: items?.reduce(
           (totalCount, currentItem) => (totalCount + currentItem.qty, 0)
         )
       };
