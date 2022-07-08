@@ -1,13 +1,12 @@
 import {
-  getGrandTotal,
-  getItemsTotalCount,
-  getNewItemsWithTotal,
+  removeItemQuantity,
   addItemQuantity,
-  generateFinalState
+  getNewItemsWithTotals,
+  getItemsAggregateCount,
+  getGrandTotal
 } from "./utils";
 
 const INITIAL_STATE = {
-  grandTotal: 0,
   items: [
     {
       id: 57,
@@ -151,29 +150,56 @@ const INITIAL_STATE = {
       ]
     }
   ],
-  uniqueItemsCount: 3,
   itemsTotalCount: 3,
-  isEmpty: false,
-  meta: false
+  uniqueItemsCount: 3,
+  grandTotal: 385,
+  isEmpty: false
 };
 
 const cartReducer = (state, action) => {
-  const cartItems = state.items;
-  const { item, qty } = action.payload;
-  const targetItemIdx = cartItems.findIndex((c) => c.id === item.id);
   switch (action.type) {
-    case "INC_QTY":
-      const items = addItemQuantity(cartItems, targetItemIdx, qty);
+    case "INC_QTY": {
+      const items = addItemQuantity(state.items, action.item, action.qty);
+      return {
+        ...state,
+        items: getNewItemsWithTotals(items),
+        itemsTotalCount: getItemsAggregateCount(items),
+        uniqueItemsCount: items.length,
+        grandTotal: items.reduce(
+          (totalCount, currentItem) => (totalCount + currentItem.qty, 0)
+        )
+      };
+    }
+    case "DEC_QTY": {
+      const items = removeItemQuantity(
+        state.items,
+        action.payload.item,
+        action.payload.qty
+      );
       return generateFinalState(state, items);
-    case "DEC_QTY":
-
+    }
     case "DELETE_ITEM":
-
+      break;
     case "ADD_ITEM":
-
+      break;
     default:
       return state;
   }
+};
+
+const generateFinalState = (state, items) => {
+  // return prev state, totalUniqueItems, new items arr, grandTotal, totalItemsInCart, isEmpty,
+  const uniqueItemsCount = items.length;
+  return {
+    ...state,
+    items: getNewItemsWithTotals(items),
+    itemsTotalCount: getItemsAggregateCount(items),
+    uniqueItemsCount,
+    grandTotal: items.reduce(
+      (totalCount, currentItem) => (totalCount + currentItem.qty, 0)
+    ),
+    isEmpty: uniqueItemsCount === 0
+  };
 };
 
 export { INITIAL_STATE, cartReducer };

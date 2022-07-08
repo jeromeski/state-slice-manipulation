@@ -9,17 +9,15 @@ const CartProvider = ({ children }) => {
   const incQty = (item, qty) => {
     dispatch({
       type: "INC_QTY",
-      payload: {
-        item,
-        qty
-      }
+      item,
+      qty
     });
   };
 
-  const decQty = (product) => {
+  const decQty = (item, qty) => {
     dispatch({
       type: "DEC_QTY",
-      payload: product
+      payload: { item, qty }
     });
   };
 
@@ -39,7 +37,7 @@ const CartProvider = ({ children }) => {
 
   const values = useMemo(
     () => ({
-      state,
+      ...state,
       incQty,
       decQty,
       delItem

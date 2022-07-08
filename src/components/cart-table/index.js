@@ -4,11 +4,12 @@ import CardThumb from "components/ui/image/cart-thumb";
 import Counter from "components/ui/counter";
 import CartButton from "components/ui/buttons/cart-button";
 import { CgTrash } from "react-icons/cg";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 const CartTable = () => {
-  const { state, incQty, decQty, delItem } = useCart();
-
+  const { grandTotal, items, incQty, decQty, delItem } = useCart();
+  console.log("grandTotal -->", grandTotal);
+  console.log("items -->", items);
   return (
     <CartTableWrap>
       <table>
@@ -22,7 +23,7 @@ const CartTable = () => {
           </tr>
         </thead>
         <tbody>
-          {state?.items?.map((item) => {
+          {items.map((item) => {
             return (
               <tr key={item.id}>
                 <td className="cart-image-col">
@@ -44,7 +45,7 @@ const CartTable = () => {
                   <p>{item.price}</p>
                 </td>
                 <td className="cart-item-total">
-                  <p>${item.price * item.qty}.00</p>
+                  <p>${item.itemTotal}.00</p>
                 </td>
               </tr>
             );
@@ -59,7 +60,7 @@ const CartTable = () => {
               <h4>Grand Total</h4>
             </td>
             <td>
-              <h4>$0.00</h4>
+              <h4>${grandTotal}.00</h4>
             </td>
           </tr>
         </tfoot>

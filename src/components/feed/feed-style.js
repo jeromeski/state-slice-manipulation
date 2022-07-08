@@ -1,4 +1,4 @@
-import styled from "styled-components/macro";
+import { styled } from "styled";
 
 const Feed = styled.div`
   padding: 15px;

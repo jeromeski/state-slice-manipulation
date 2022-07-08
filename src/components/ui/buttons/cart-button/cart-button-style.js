@@ -1,5 +1,4 @@
-import styled from "styled-components/macro";
-import { space, layout, color } from "styled-system";
+import { styled, space, layout, color } from "styled";
 
 export const StyledCartButton = styled.button`
   display: flex;
